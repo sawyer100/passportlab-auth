@@ -1,14 +1,20 @@
 import "express";
 
-//idk if there is another type to use but i cant figure it out 
-//so im merging id into express.user because express.user isnt giving me a user.id 🤷‍♂️
-// im running with npx ts-node --project tsconfig.json --files app.ts
+
+interface userGuy {
+  id: number,
+  name: string,
+  email: string,
+  password: string, 
+  // pretty sure ts is horrible idea but just because it lab
+  role: string,
+}
+
 declare global {
   namespace Express {
-    interface User {
-      id: number;
+    interface User extends userGuy {
     }
   }
 }
 
-export {};
+export { };
