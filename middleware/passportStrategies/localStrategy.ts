@@ -18,18 +18,14 @@ const localStrategy = new LocalStrategy(
   }
 );
 
-/*
-FIX ME (types) 😭
-*/
+
 passport.serializeUser(function (user: Express.User, done) { 
   //i dont think done needs a type caues its in the serlaizeUser defiition (and i dont know hwo to type it)
   //also i think u dont need a type for user either but im putitng it incase im wrong and i lose marks
   done(null, user.id);
 });
 
-/*
-FIX ME (types) 😭
-*/
+
 passport.deserializeUser(function (id: number, done) {
   let user = getUserById(id);
   if (user) {
