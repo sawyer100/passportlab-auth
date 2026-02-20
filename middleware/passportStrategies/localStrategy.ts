@@ -1,6 +1,5 @@
 import passport from "passport";
-import { Strategy as LocalStrategy } from "passport-local";
-import { getUserByEmailIdAndPassword, getUserById } from "../../controllers/userController";
+import { Strategy as LocalStrategy } from "passport-local";import { getUserByEmailIdAndPassword, getUserById, getUserByEmail } from "../../controllers/userController";
 import { PassportStrategy } from '../../interfaces/index';
 
 const localStrategy = new LocalStrategy(
@@ -8,13 +7,19 @@ const localStrategy = new LocalStrategy(
     usernameField: "email",
     passwordField: "password",
   },
+  
   (email, password, done) => {
-    const user = getUserByEmailIdAndPassword(email, password);
-    return user
-      ? done(null, user)
-      : done(null, false, {
-        message: "Your login details are not valid. Please try again",
-      });
+    const user = getUserByEmail(email);
+
+    if (!user) {
+      return done(null, false, { message: "Email not found" });
+    }
+
+    if (!getUserByEmailIdAndPassword(email, password)) {
+      return done(null, false, { message: "Incorrect details, try again" });
+    }
+
+    return done(null, user);
   }
 );
 

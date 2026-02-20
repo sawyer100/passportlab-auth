@@ -1,3 +1,10 @@
+// idk if u have my package.json but to make it run no my machine sepcifically i need to use 
+// "start": "npx ts-node --project tsconfig.json --files app.ts"
+//
+//
+//
+//
+//
 import express from "express";
 import expressLayouts from "express-ejs-layouts";
 import session from "express-session";

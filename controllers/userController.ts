@@ -17,6 +17,10 @@ const getUserById = (id:any) => {
   return null;
 };
 
+const getUserByEmail = (email: string) => {
+  return userModel.findOne(email);
+};
+
 function isUserValid(user: any, password: string) {
   return user.password === password;
 }
@@ -24,4 +28,5 @@ function isUserValid(user: any, password: string) {
 export {
   getUserByEmailIdAndPassword,
   getUserById,
+  getUserByEmail,
 };
