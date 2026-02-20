@@ -1,6 +1,6 @@
 // idk if u have my package.json but to make it run no my machine sepcifically i need to use 
 // "start": "npx ts-node --project tsconfig.json --files app.ts"
-//
+// acatually yk what package is pushed to github so like u prob get it, but im paranoid so im keeping this
 //
 //
 //
