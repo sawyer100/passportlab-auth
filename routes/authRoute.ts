@@ -1,11 +1,11 @@
 import express from "express";
 import passport from 'passport';
-import { forwardAuthenticated } from "../middleware/checkAuth";
+import { ensureAuthenticated, forwardAuthenticated } from "../middleware/checkAuth";
 
 const router = express.Router();
 
 router.get("/login", forwardAuthenticated, (req, res) => {
- const messages = (req.session as any).messages ?? [];
+  const messages = (req.session as any).messages ?? [];
   (req.session as any).messages = [];
   res.render("login", { messages });
 })
@@ -38,5 +38,7 @@ router.get("/github/callback",
     res.redirect("/");
   }
 );
+
+
 
 export default router;

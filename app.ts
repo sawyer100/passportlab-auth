@@ -42,11 +42,17 @@ app.use(express.urlencoded({ extended: true }));
 
 passportMiddleware(app);
 
+
 app.use((req, res, next) => {
-  console.log("session:", req.session);
-  console.log((req.session as any).passport);
-  console.log("user:", req.user);
-  console.log(req.user?.name)
+  // console.log("session:", req.session);
+  // console.log((req.session as any).passport);
+  // console.log("user:", req.user);
+  // console.log(req.user?.name)
+  // req.sessionStore.all?.((err, sessions) => {
+  //   for (const sessionId in sessions) {
+  //     console.log(sessionId);
+  //   }
+  // });
   next();
 });
 
