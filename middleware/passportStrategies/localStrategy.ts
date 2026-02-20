@@ -7,12 +7,12 @@ const localStrategy = new LocalStrategy(
     usernameField: "email",
     passwordField: "password",
   },
-  
+
   (email, password, done) => {
     const user = getUserByEmail(email);
 
     if (!user) {
-      return done(null, false, { message: "Email not found" });
+      return done(null, false, { message: `Couldn't find user with email: ${email}` });
     }
 
     if (!getUserByEmailIdAndPassword(email, password)) {
@@ -25,19 +25,19 @@ const localStrategy = new LocalStrategy(
 
 
 passport.serializeUser(function (user: Express.User, done) { 
-  //i dont think done needs a type caues its in the serlaizeUser defiition (and i dont know hwo to type it)
-  //also i think u dont need a type for user either but im putitng it incase im wrong and i lose marks
-  done(null, user.id);
+  // console.log("KWERHR3R34HERURHF", user.name)
+  done(null, (user as any).id);
 });
 
 
-passport.deserializeUser(function (id: number, done) {
+passport.deserializeUser(function (id: string, done) {
   let user = getUserById(id);
   if (user) {
     done(null, user);
   } else {
     done({ message: "User not found" }, null);
   }
+  console.log("deserialize id:", id);
 });
 
 const passportLocalStrategy: PassportStrategy = {

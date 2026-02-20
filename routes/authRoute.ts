@@ -27,14 +27,16 @@ router.get("/logout", (req, res) => {
   res.redirect("/auth/login");
 });
 
-router.get("/github", passport.authenticate("github"));
+router.get("/github",
+  passport.authenticate("github", { scope: ["user:email"] })
+);
 
-router.get(
-  "/github/callback",
-  passport.authenticate("github", {
-    failureRedirect: "/auth/login",
-    successRedirect: "/dashboard",
-  })
+router.get("/github/callback",
+  passport.authenticate("github", { failureRedirect: "/login" }),
+  (req, res) => {
+    console.log("passport:", (req.session as any).passport);
+    res.redirect("/");
+  }
 );
 
 export default router;

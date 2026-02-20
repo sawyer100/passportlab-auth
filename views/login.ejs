@@ -7,8 +7,9 @@
 <% const msgs = typeof messages !== "undefined" ? messages : []; %>
 
 <% if (msgs.length) { %>
-  <p><%= msgs[0] %></p>
+  <p style="color: rgb(255, 89, 89)"><%= msgs[0] %></p>
 <% } %>
+<!-- idk about inline css but the err message wanst red before so like ye -->
 
       <h2>Login</h2>
       <form action="/auth/login" method="POST">
@@ -34,8 +35,8 @@
         </div>
         <button type="submit" class="btn btn-primary btn-block">Login</button>
       </form>
-      <div>or</div>
-      <a href="/auth/github" class="btn btn-primary btn-block">Login with Github</a>
+      <div>OR</div>
+      <a style="background-color: rgb(114, 114, 114);" href="/auth/github" class="btn btn-primary btn-block">Login with Github</a>
       <p class="mt-4">New User? <a href="/auth/register">Register</a></p>
       <p>Forgot Password? <a href="/auth/forgot">Reset</a></p>
     </div>

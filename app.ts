@@ -43,14 +43,10 @@ app.use(express.urlencoded({ extended: true }));
 passportMiddleware(app);
 
 app.use((req, res, next) => {
-  console.log(`User details are: `);
-  console.log(req.user);
-
-  console.log("Entire session object:");
-  console.log(req.session);
-
-  console.log(`Session details are: `);
+  console.log("session:", req.session);
   console.log((req.session as any).passport);
+  console.log("user:", req.user);
+  console.log(req.user?.name)
   next();
 });
 
